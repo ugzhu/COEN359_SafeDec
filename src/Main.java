@@ -1,11 +1,11 @@
 public class Main {
-    /// create customer obj
+    /// create room Yujie
 
 
-    /// build schedule
+    /// create schedule Yujie
 
 
-    /// builder bill
+    /// build bill Himani
 
 
 }
