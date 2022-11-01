@@ -1,3 +1,4 @@
+// to-do: make it singleton
 import java.util.HashMap;
 
 public class HomeRoomBuilder implements RoomBuilder{
