@@ -64,6 +64,7 @@ public class Main {
 
 
 
+
         //////////////////////////////////
         ///////    Himani      //////////
         /////////////////////////////////
@@ -76,5 +77,11 @@ public class Main {
 
         singleton instance2 = singleton.getinstance();
         System.out.println(instance2.getsecurityserviceamount());
+
+
+        //////// demo break in////
+        //sleep for 1 min
+        HashMap<String, Room> break_in_demo = new HashMap<>();
+        // {"break-in" : rooms.get(0)}
     }
 }
