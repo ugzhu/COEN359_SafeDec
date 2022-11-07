@@ -50,7 +50,7 @@ public class Main {
 
         /// create all rooms with/without services and camera
         List<Room> rooms = new ArrayList<>();
-        RoomBuilder roomBuilder = new HomeRoomBuilder();
+        RoomBuilder roomBuilder = HomeRoomBuilder.instance();
         for (int i = 0; i < layout.size(); i++) {
             Room r = roomBuilder.buildRoom(layout.get(i));
             rooms.add(r);

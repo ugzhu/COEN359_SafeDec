@@ -1,4 +1,3 @@
-// to-do: make it singleton
 import java.util.HashMap;
 
 public class HomeRoomBuilder implements RoomBuilder{
@@ -6,8 +5,12 @@ public class HomeRoomBuilder implements RoomBuilder{
     Factory fireFactory;
     Factory securityFactory;
 
-    public HomeRoomBuilder(){
-        this.roomCreator = new HomeRoomCreator();
+    // Singleton
+    static private HomeRoomBuilder instance_  = new HomeRoomBuilder();
+    static public HomeRoomBuilder instance() {    return instance_;  }
+
+    private HomeRoomBuilder(){
+        this.roomCreator = HomeRoomCreator.instance();
         this.fireFactory = new FireFactory();
         this.securityFactory = new SecurityFactory();
     }
