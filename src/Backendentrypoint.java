@@ -4,8 +4,10 @@ import java.util.List;
 
 public class Backendentrypoint {
 
-    public void EntryMainfunc () {
+    public void EntryMainfunc (ArrayList<HomeRoomCreator> roomlist, User userinput) {
         System.out.println("********Backend Execution started");
+
+        User userobj = userinput;
         //dummy values passed from GUI
         List<HashMap> layout = new ArrayList<>();
         HashMap<String, Object> room1 = new HashMap<>();
@@ -36,13 +38,13 @@ public class Backendentrypoint {
         startTime = "00:00:00";
         endTime = "23:59:59";
 
+        // Data from GUI
+        // dummy layout looks like: [{security=true, fire=true, id=1, camera=true, schedule obj1},
+        //                           {security=false, fire=true, id=2, camera=true, schedule obj2},
+        //                           {security=true, fire=false, id=3, camera=false, schedule obj3}]
 
-        // dummy layout looks like: [{security=true, fire=true, id=1, camera=true},
-        //                           {security=false, fire=true, id=2, camera=true},
-        //                           {security=true, fire=false, id=3, camera=false}]
 
-
-        // value passed from GUI: layout, startTime, endTime
+        // value passed from GUI: layout, schedule object
 
 
         //////////////////////////////////
@@ -57,32 +59,18 @@ public class Backendentrypoint {
             rooms.add(r);
         }
 
-        /// create schedule
+        /// create schedule this will come from UI . UI will create object and send reference to it.
         Schedule schedule = new Schedule(startTime, endTime);
         System.out.println(schedule.getDuration());
 
         // data generated: List<Room> rooms, Schedule schedule
 
 
-
-
-        //////////////////////////////////
-        ///////    Himani..... move this to GUI class     //////////
-        /////////////////////////////////
-
-        //Need to call singleton class
-        System.out.println("Hello world!");
-        singleton instance1 = singleton.getinstance();
-
-        System.out.println(instance1.getfireserviceamount());
-
-        singleton instance2 = singleton.getinstance();
-        System.out.println(instance2.getsecurityserviceamount());
-
-
+        // Covered - simuated in GUI. Will review , so that we dont need it here.
         //////// demo break in////
+
         //sleep for 1 min
-        HashMap<String, Room> break_in_demo = new HashMap<>();
+        //HashMap<String, Room> break_in_demo = new HashMap<>();
         // {"break-in" : rooms.get(0)}
     }
 }

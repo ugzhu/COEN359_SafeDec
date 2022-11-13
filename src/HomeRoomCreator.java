@@ -4,7 +4,7 @@ public class HomeRoomCreator implements RoomCreator{
     // Singleton
     static private HomeRoomCreator instance_  = new HomeRoomCreator();
     static public HomeRoomCreator instance() {    return instance_;  }
-    private HomeRoomCreator(){}
+    public HomeRoomCreator(){}
 
     public Room createHomeRoom(int id){
 
