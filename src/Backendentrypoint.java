@@ -2,9 +2,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Main {
+public class Backendentrypoint {
 
-    public static void main(String[] args) {
+    public void EntryMainfunc () {
+        System.out.println("********Reached backend!!!11");
         //dummy values passed from GUI
         List<HashMap> layout = new ArrayList<>();
         HashMap<String, Object> room1 = new HashMap<>();
@@ -66,7 +67,7 @@ public class Main {
 
 
         //////////////////////////////////
-        ///////    Himani      //////////
+        ///////    Himani..... move this to GUI class     //////////
         /////////////////////////////////
 
         //Need to call singleton class

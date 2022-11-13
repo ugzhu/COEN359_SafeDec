@@ -268,7 +268,32 @@ public class safedec extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Schedule started");
+                subpanel1.setBackground(Color.YELLOW);
+                subpanel2.setBackground(Color.YELLOW);
+                subpanel3.setBackground(Color.YELLOW);
+                mainpanel.revalidate();
+                mainpanel.repaint();
 
+                ActionListener ticktock = new ActionListener() {
+                    public void actionPerformed(ActionEvent evnt) {
+                        subpanel2.setBackground(Color.RED);
+                        mainpanel.revalidate();
+                        mainpanel.repaint();
+
+                        Toolkit.getDefaultToolkit().beep();
+
+                        //Calling backend code frm here frm start monitoring button click and passing
+                        // all input user object, room object, timer object
+                        // Call backend function
+                    }
+                };
+                Timer breakin = new Timer(1000, ticktock);
+                breakin.setRepeats(false);
+                breakin.start();
+                JOptionPane.showMessageDialog(null," Break-in the building");
+
+                Backendentrypoint bp = new Backendentrypoint();
+                bp.EntryMainfunc();
             }
         });
 
@@ -286,6 +311,11 @@ public class safedec extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Stopping the Break-in alarm notification");
+                subpanel1.setBackground(Color.GREEN);
+                subpanel2.setBackground(Color.GREEN);
+                subpanel3.setBackground(Color.GREEN);
+                mainpanel.revalidate();
+                mainpanel.repaint();
             }
         });
         mainpanel.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 0));
