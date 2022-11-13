@@ -274,32 +274,31 @@ public class safedec extends JFrame{
                 mainpanel.revalidate();
                 mainpanel.repaint();
 
-                ActionListener ticktock = new ActionListener() {
-                    public void actionPerformed(ActionEvent evnt) {
-                        subpanel2.setBackground(Color.RED);
-                        mainpanel.revalidate();
-                        mainpanel.repaint();
-
-                        Toolkit.getDefaultToolkit().beep();
-
-                    }
-                };
-                Timer breakin = new Timer(2000, ticktock);
-                breakin.setRepeats(false);
-                breakin.start();
-
-                //for(int i = 0 ; i < 50; i++){
-                  //  try{
-                        //Toolkit.getDefaultToolkit().beep();
-                    //    Thread.sleep(100);
-                    //}catch(Exception x){
-                    //}
-                //}
-
                 //Calling backend code frm here frm start monitoring button click and passing
                 // all input user object, room object, timer object shld be passed to below backend object's main function
                 Backendentrypoint bp = new Backendentrypoint();
                 bp.EntryMainfunc();
+
+                ActionListener ticktock = new ActionListener() {
+                    public void actionPerformed(ActionEvent evnt) {
+
+                        for(int i = 0 ; i < 25; i++) {
+                            Toolkit.getDefaultToolkit().beep();
+                            subpanel2.setBackground(Color.RED);
+                            mainpanel.revalidate();
+                            mainpanel.repaint();
+                            try {
+                                    Thread.sleep(100);
+                            }catch(InterruptedException  x) {
+
+                            }
+                        }
+                    }
+                };
+                Timer breakin1 = new Timer(2000, ticktock);
+                breakin1.setRepeats(false);
+                breakin1.start();
+
             }
         });
 

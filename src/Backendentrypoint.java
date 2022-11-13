@@ -5,7 +5,7 @@ import java.util.List;
 public class Backendentrypoint {
 
     public void EntryMainfunc () {
-        System.out.println("********Reached backend!!!11");
+        System.out.println("********Backend Execution started");
         //dummy values passed from GUI
         List<HashMap> layout = new ArrayList<>();
         HashMap<String, Object> room1 = new HashMap<>();
