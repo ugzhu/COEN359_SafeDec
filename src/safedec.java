@@ -1,16 +1,13 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.*;
-import java.util.HashMap;
-import java.util.Vector;
+import java.text.DateFormat;
+import java.text.Format;
+import java.util.Date;
 
 
-public class hw2 extends JFrame{
+public class safedec extends JFrame{
     public JPanel mainpanel;
     private JCheckBox servtype1;
     private JCheckBox servtype2;
@@ -37,7 +34,7 @@ public class hw2 extends JFrame{
     private JLabel hrslabel;
     private JPanel hrs_panel;
 
-    public hw2(String title)
+    public safedec(String title)
     {
         super(title);
         mainpanel = new JPanel();
@@ -50,7 +47,7 @@ public class hw2 extends JFrame{
         subpanel4 = new JPanel();
         subpanel5 = new JPanel();
 
-        lab1 = new JLabel("Hall");
+        lab1 = new JLabel("Living Room");
         subpanel1.add(lab1);
         subpanel1.add(Box.createVerticalStrut(10));
         servname1 = new JLabel("services");
@@ -68,20 +65,38 @@ public class hw2 extends JFrame{
         subpanel1.add(sensortype1);
         subpanel1.add(Box.createVerticalStrut(2));
         subpanel1.add(sensortype2);
-        hrs_sch = new JTextField();
-        hrs_sch.setSize(5,5);
-        hrs_sch.setText("");
-        hrslabel = new JLabel("select hrs for days selected");
+        //hrs_sch = new JTextField();
+        //hrs_sch.setSize(5,5);
+        //hrs_sch.setText("");
+        Format sTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        JLabel stimelabel = new JLabel("Start Time:");
+        JFormattedTextField stimeinput = new JFormattedTextField(sTime);
+        stimeinput.setValue(new Date());
+        stimeinput.setColumns(20);
         subpanel1.add(Box.createVerticalStrut(10));
-        subpanel1.add(hrslabel);
+        subpanel1.add(stimelabel);
         subpanel1.add(Box.createVerticalStrut(3));
-        subpanel1.add(hrs_sch);
+        subpanel1.add(stimeinput);
+        Format eTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        JLabel etimelabel = new JLabel("End Time:");
+        JFormattedTextField etimeinput = new JFormattedTextField(eTime);
+        etimeinput.setValue(new Date());
+        etimeinput.setColumns(20);
+        subpanel1.add(Box.createVerticalStrut(3));
+        subpanel1.add(etimelabel);
+        subpanel1.add(Box.createVerticalStrut(3));
+        subpanel1.add(etimeinput);
+        //hrslabel = new JLabel("select hrs for days selected");
+        //subpanel1.add(Box.createVerticalStrut(10));
+        //subpanel1.add(hrslabel);
+        //subpanel1.add(Box.createVerticalStrut(3));
+        //subpanel1.add(hrs_sch);
         subpanel1.add(Box.createVerticalStrut(10));
-        JLabel orlabel = new JLabel("OR");
+        JLabel orlabel = new JLabel("AND ");
         subpanel1.add(orlabel);
         subpanel1.add(Box.createVerticalStrut(10));
         JTextField day_sch = new JTextField();
-        JLabel daylabel = new JLabel("select number of days in a weeks");
+        JLabel daylabel = new JLabel("select number of days in a weeks ");
         subpanel1.add(Box.createVerticalStrut(3));
         subpanel1.add(daylabel);
         // day_sch.setSize(5,5);
@@ -89,7 +104,7 @@ public class hw2 extends JFrame{
         day_sch.setColumns(10);
         subpanel1.add(day_sch);
 
-        subpanel1.setPreferredSize( new Dimension(300,300));
+        subpanel1.setPreferredSize( new Dimension(300,400));
         subpanel1.setBackground(Color.green);
         subpanel1.setLayout(new BoxLayout(subpanel1, BoxLayout.Y_AXIS));
 
@@ -111,16 +126,34 @@ public class hw2 extends JFrame{
         subpanel2.add(sensortype3);
         subpanel2.add(Box.createVerticalStrut(2));
         subpanel2.add(sensortype4);
-        JTextField hrs_sch2 = new JTextField();
-        hrs_sch2.setSize(5,5);
-        hrs_sch2.setText("");
-        JLabel hrslabel2 = new JLabel("select hrs for days selected");
+        // JTextField hrs_sch2 = new JTextField();
+        // hrs_sch2.setSize(5,5);
+        // hrs_sch2.setText("");
+        // JLabel hrslabel2 = new JLabel("select hrs for days selected");
         subpanel2.add(Box.createVerticalStrut(10));
-        subpanel2.add(hrslabel2);
+        //subpanel2.add(hrslabel2);
+        //subpanel2.add(Box.createVerticalStrut(3));
+        //subpanel2.add(hrs_sch2);
+        Format srTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        JLabel srtimelabel = new JLabel("Start Time:");
+        JFormattedTextField srtimeinput = new JFormattedTextField(srTime);
+        srtimeinput.setValue(new Date());
+        srtimeinput.setColumns(20);
+        subpanel2.add(Box.createVerticalStrut(10));
+        subpanel2.add(srtimelabel);
         subpanel2.add(Box.createVerticalStrut(3));
-        subpanel2.add(hrs_sch2);
+        subpanel2.add(srtimeinput);
+        Format erTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        JLabel ertimelabel = new JLabel("End Time:");
+        JFormattedTextField ertimeinput = new JFormattedTextField(erTime);
+        ertimeinput.setValue(new Date());
+        ertimeinput.setColumns(20);
+        subpanel2.add(Box.createVerticalStrut(3));
+        subpanel2.add(ertimelabel);
+        subpanel2.add(Box.createVerticalStrut(3));
+        subpanel2.add(ertimeinput);
         subpanel2.add(Box.createVerticalStrut(10));
-        JLabel orlabel2 = new JLabel("OR");
+        JLabel orlabel2 = new JLabel("AND");
         subpanel2.add(orlabel2);
         subpanel2.add(Box.createVerticalStrut(10));
         JTextField day_sch2 = new JTextField();
@@ -131,7 +164,7 @@ public class hw2 extends JFrame{
         day_sch2.setText("");
         day_sch2.setColumns(10);
         subpanel2.add(day_sch2);
-        subpanel2.setPreferredSize( new Dimension(300,300));
+        subpanel2.setPreferredSize( new Dimension(300,400));
         subpanel2.setBackground(Color.green);
         subpanel2.setLayout(new BoxLayout(subpanel2, BoxLayout.Y_AXIS));
 
@@ -153,16 +186,34 @@ public class hw2 extends JFrame{
         subpanel3.add(sensortype5);
         subpanel3.add(Box.createVerticalStrut(2));
         subpanel3.add(sensortype6);
-        JTextField hrs_sch3 = new JTextField();
-        hrs_sch3.setSize(5,5);
-        hrs_sch3.setText("");
-        JLabel hrslabel3 = new JLabel("select hrs for days selected");
+        //JTextField hrs_sch3 = new JTextField();
+        //hrs_sch3.setSize(5,5);
+        //hrs_sch3.setText("");
+        //JLabel hrslabel3 = new JLabel("select hrs for days selected");
         subpanel3.add(Box.createVerticalStrut(10));
-        subpanel3.add(hrslabel3);
+        Format sr2Time = DateFormat.getTimeInstance(DateFormat.SHORT);
+        JLabel sr2timelabel = new JLabel("Start Time:");
+        JFormattedTextField sr2timeinput = new JFormattedTextField(sr2Time);
+        sr2timeinput.setValue(new Date());
+        sr2timeinput.setColumns(20);
+        subpanel3.add(Box.createVerticalStrut(10));
+        subpanel3.add(sr2timelabel);
         subpanel3.add(Box.createVerticalStrut(3));
-        subpanel3.add(hrs_sch3);
+        subpanel3.add(sr2timeinput);
+        Format er2Time = DateFormat.getTimeInstance(DateFormat.SHORT);
+        JLabel er2timelabel = new JLabel("End Time:");
+        JFormattedTextField er2timeinput = new JFormattedTextField(er2Time);
+        er2timeinput.setValue(new Date());
+        er2timeinput.setColumns(20);
+        subpanel3.add(Box.createVerticalStrut(3));
+        subpanel3.add(er2timelabel);
+        subpanel3.add(Box.createVerticalStrut(3));
+        subpanel3.add(er2timeinput);
+        //subpanel3.add(hrslabel3);
+        //subpanel3.add(Box.createVerticalStrut(3));
+        //subpanel3.add(hrs_sch3);
         subpanel3.add(Box.createVerticalStrut(10));
-        JLabel orlabel3 = new JLabel("OR");
+        JLabel orlabel3 = new JLabel("AND");
         subpanel3.add(orlabel3);
         subpanel3.add(Box.createVerticalStrut(10));
         JTextField day_sch3 = new JTextField();
@@ -173,7 +224,7 @@ public class hw2 extends JFrame{
         day_sch3.setText("");
         day_sch3.setColumns(10);
         subpanel3.add(day_sch3);
-        subpanel3.setPreferredSize( new Dimension(300,300));
+        subpanel3.setPreferredSize( new Dimension(300,400));
         subpanel3.setBackground(Color.green);
         subpanel3.setLayout(new BoxLayout(subpanel3, BoxLayout.Y_AXIS));
 
@@ -183,9 +234,13 @@ public class hw2 extends JFrame{
 
         JPanel userpanel = new JPanel();
         schedule = new JButton("Start monitoring");
-        JLabel userlabel = new JLabel("password  ");
+        JLabel userlabel = new JLabel("username");
         userpanel.add(userlabel);
-        JTextField password = new JTextField(20);
+        JTextField username = new JTextField(20);
+        userpanel.add(username);
+        JLabel passlabel = new JLabel("password");
+        userpanel.add(passlabel);
+        JPasswordField password = new JPasswordField(20);
         userpanel.add(password);
         JLabel telephlabel = new JLabel("telephone");
         userpanel.add(telephlabel);
@@ -235,9 +290,10 @@ public class hw2 extends JFrame{
     public static void main(String[] args)
     {
         System.gc();
-        JFrame frame1= new hw2("Design pattern gui");
+        JFrame frame1= new safedec("Design pattern gui");
 
         frame1.setVisible(true);
 
     }
 }
+
