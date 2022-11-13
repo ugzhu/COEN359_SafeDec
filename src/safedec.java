@@ -282,16 +282,22 @@ public class safedec extends JFrame{
 
                         Toolkit.getDefaultToolkit().beep();
 
-                        //Calling backend code frm here frm start monitoring button click and passing
-                        // all input user object, room object, timer object
-                        // Call backend function
                     }
                 };
-                Timer breakin = new Timer(1000, ticktock);
+                Timer breakin = new Timer(2000, ticktock);
                 breakin.setRepeats(false);
                 breakin.start();
-                JOptionPane.showMessageDialog(null," Break-in the building");
 
+                //for(int i = 0 ; i < 50; i++){
+                  //  try{
+                        //Toolkit.getDefaultToolkit().beep();
+                    //    Thread.sleep(100);
+                    //}catch(Exception x){
+                    //}
+                //}
+
+                //Calling backend code frm here frm start monitoring button click and passing
+                // all input user object, room object, timer object shld be passed to below backend object's main function
                 Backendentrypoint bp = new Backendentrypoint();
                 bp.EntryMainfunc();
             }
