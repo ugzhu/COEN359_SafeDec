@@ -267,6 +267,7 @@ public class safedec extends JFrame{
         schedule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Schedule started");
 
             }
         });
@@ -281,6 +282,12 @@ public class safedec extends JFrame{
             }
         });
 
+        disarm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Stopping the Break-in alarm notification");
+            }
+        });
         mainpanel.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 0));
         mainpanel.revalidate();
         mainpanel.repaint();
