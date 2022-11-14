@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         //dummy values passed from GUI
-        List<HashMap> layout = new ArrayList<>();
+        List<HashMap<String, Object>> layout = new ArrayList<>();
         HashMap<String, Object> room1 = new HashMap<>();
         HashMap<String, Object> room2 = new HashMap<>();
         HashMap<String, Object> room3 = new HashMap<>();
@@ -36,9 +36,9 @@ public class Main {
         endTime = "23:59:59";
 
 
-        // dummy layout looks like: [{security=true, fire=true, id=1, camera=true},
-        //                           {security=false, fire=true, id=2, camera=true},
-        //                           {security=true, fire=false, id=3, camera=false}]
+        // dummy layout looks like: [{security=true, fire=true, id=1, camera=true，startTime="00:00:10", endTime="22:11:22"},
+        //                           {security=false, fire=true, id=2, camera=true, startTime="00:00:10", endTime="22:11:22"},
+        //                           {security=true, fire=false, id=3, camera=false, startTime="00:00:10", endTime="22:11:22"}]
 
 
         // value passed from GUI: layout, startTime, endTime
@@ -51,17 +51,29 @@ public class Main {
         /// create all rooms with/without services and camera
         List<Room> rooms = new ArrayList<>();
         RoomBuilder roomBuilder = HomeRoomBuilder.instance();
-        for (int i = 0; i < layout.size(); i++) {
-            Room r = roomBuilder.buildRoom(layout.get(i));
+        for (HashMap<String, Object> stringObjectHashMap : layout) {
+            Room r = roomBuilder.buildRoom(stringObjectHashMap);
             rooms.add(r);
         }
 
-        /// create schedule
-        Schedule schedule = new Schedule(startTime, endTime);
-        System.out.println(schedule.getDuration());
 
-        // data generated: List<Room> rooms, Schedule schedule
+        // create user
+        String username = "my_username";
+        String password = "my_pwd";
+        String phone = "my_phone";
+        User user = new HomeUser(username, password, phone);
 
+        // data generated: List<Room> rooms, User user
+
+        // check fire service: room.hasFireService -> boolean
+        // check security service: room.hasSecurityService -> boolean
+        // check camera: room.hasCamera -> boolean
+        // get id: room.getId() -> int
+        // get duration room.getSchedule.getDuration() -> long
+
+        // get password: user.getPassword() -> String
+        // get username: user.getUsername() -> String
+        // get phone: user.getPhone() -> String
 
 
 
