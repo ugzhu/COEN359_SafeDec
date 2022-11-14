@@ -2,9 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Main {
+public class Backendentrypoint {
 
-    public static void main(String[] args) {
+    public void EntryMainfunc (ArrayList<HomeRoomCreator> roomlist, User userinput) {
+        System.out.println("********Backend Execution started");
+
+        User userobj = userinput;
         //dummy values passed from GUI
         List<HashMap<String, Object>> layout = new ArrayList<>();
         HashMap<String, Object> room1 = new HashMap<>();
@@ -36,12 +39,13 @@ public class Main {
         endTime = "23:59:59";
 
 
-        // dummy layout looks like: [{security=true, fire=true, id=1, camera=true，startTime="00:00:10", endTime="22:11:22"},
-        //                           {security=false, fire=true, id=2, camera=true, startTime="00:00:10", endTime="22:11:22"},
-        //                           {security=true, fire=false, id=3, camera=false, startTime="00:00:10", endTime="22:11:22"}]
+        // dummy layout looks like: [{security=true, fire=true, id=1, camera=true, schedule obj1},
+        //                           {security=false, fire=true, id=2, camera=true, schedule obj2},
+        //                           {security=true, fire=false, id=3, camera=false, schedule obj3}]
 
 
-        // value passed from GUI: layout, startTime, endTime
+
+        // value passed from GUI: layout, schedule object
 
 
         //////////////////////////////////
@@ -55,6 +59,7 @@ public class Main {
             Room r = roomBuilder.buildRoom(stringObjectHashMap);
             rooms.add(r);
         }
+
 
 
         // create user
@@ -75,25 +80,11 @@ public class Main {
         // get username: user.getUsername() -> String
         // get phone: user.getPhone() -> String
 
-
-
-        //////////////////////////////////
-        ///////    Himani      //////////
-        /////////////////////////////////
-
-        //Need to call singleton class
-        System.out.println("Hello world!");
-        singleton instance1 = singleton.getinstance();
-
-        System.out.println(instance1.getfireserviceamount());
-
-        singleton instance2 = singleton.getinstance();
-        System.out.println(instance2.getsecurityserviceamount());
-
-
+        // Covered - simuated in GUI. Will review , so that we dont need it here.
         //////// demo break in////
+
         //sleep for 1 min
-        HashMap<String, Room> break_in_demo = new HashMap<>();
+        //HashMap<String, Room> break_in_demo = new HashMap<>();
         // {"break-in" : rooms.get(0)}
     }
 }

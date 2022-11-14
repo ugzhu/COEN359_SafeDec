@@ -1,5 +1,7 @@
+
 public interface User {
-    public String getUsername();
-    public String getPassword();
-    public String getPhone();
+    public boolean check_password();
+    public String get_user();
+    public  String get_password();
+    public  String get_telephone();
 }

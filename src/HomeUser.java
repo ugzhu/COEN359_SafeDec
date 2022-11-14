@@ -1,24 +1,30 @@
 public class HomeUser implements User{
-    private String username;
-    private String password;
-    private String phone;
+    String user;
+    String password;
+    String telephone;
 
-    public HomeUser(String username, String password, String phone){
-        this.username = username;
-        this.password = password;
-        this.phone = phone;
+    public HomeUser(String u, String p, String t)
+    {
+        this.user = u;
+        this.password = p;
+        this.telephone = t;
     }
-
-
-    public String getUsername() {
-        return this.username;
+    public boolean check_password()
+    {
+        return true;
     }
-
-    public String getPassword() {
+    public String get_user()
+    {
+        return this.user;
+    }
+    public  String get_password()
+    {
         return this.password;
     }
-
-    public String getPhone() {
-        return this.phone;
+    public  String get_telephone()
+    {
+        return this.telephone;
     }
+
+
 }
