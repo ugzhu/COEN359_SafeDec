@@ -9,8 +9,8 @@ public class concretesecuritywithoutcamerastrategy implements billstrategy{
             {
                 if (securityroom.get(i).hasCamera() == false)
                 {
-                    //long schedule_duration = securityroom.get(i).getSchedule.getDuration();
-                    //securityamt = securityamt + (price_for_a_second_with_camera * schedule_duration)
+                    long schedule_duration = securityroom.get(i).getSchedule().getDuration();
+                    securityamt = securityamt + (price_for_a_second_with_camera * schedule_duration);
                 }
 
             }
