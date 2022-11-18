@@ -2,7 +2,7 @@ public class HomeUser implements User{
     String user;
     String password;
     String telephone;
-
+    int id=1100;
     public HomeUser(String u, String p, String t)
     {
         this.user = u;
@@ -25,6 +25,9 @@ public class HomeUser implements User{
     {
         return this.telephone;
     }
-
+    public int get_id()
+    {
+        return this.id;
+    }
 
 }

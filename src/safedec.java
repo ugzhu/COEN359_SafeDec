@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 
 public class safedec extends JFrame{
@@ -41,7 +42,7 @@ public class safedec extends JFrame{
         mainpanel = new JPanel();
         this.setContentPane(mainpanel);
 
-
+        final String[] billuserinfo = new String[1];
         subpanel1 = new JPanel();
         subpanel2 = new JPanel();
         subpanel3 = new JPanel();
@@ -67,7 +68,7 @@ public class safedec extends JFrame{
         subpanel1.add(Box.createVerticalStrut(2));
         subpanel1.add(sensortype2);
 
-        Format sTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        Format sTime = new SimpleDateFormat("HH.mm.ss");
         JLabel stimelabel = new JLabel("Start Time:");
         JFormattedTextField stimeinput = new JFormattedTextField(sTime);
         stimeinput.setValue(new Date());
@@ -76,7 +77,7 @@ public class safedec extends JFrame{
         subpanel1.add(stimelabel);
         subpanel1.add(Box.createVerticalStrut(3));
         subpanel1.add(stimeinput);
-        Format eTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        Format eTime = new SimpleDateFormat("HH.mm.ss");
         JLabel etimelabel = new JLabel("End Time:");
         JFormattedTextField etimeinput = new JFormattedTextField(eTime);
         etimeinput.setValue(new Date());
@@ -124,7 +125,7 @@ public class safedec extends JFrame{
 
         subpanel2.add(Box.createVerticalStrut(10));
 
-        Format srTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        Format srTime = new SimpleDateFormat("HH.mm.ss");
         JLabel srtimelabel = new JLabel("Start Time:");
         JFormattedTextField srtimeinput = new JFormattedTextField(srTime);
         srtimeinput.setValue(new Date());
@@ -133,7 +134,7 @@ public class safedec extends JFrame{
         subpanel2.add(srtimelabel);
         subpanel2.add(Box.createVerticalStrut(3));
         subpanel2.add(srtimeinput);
-        Format erTime = DateFormat.getTimeInstance(DateFormat.SHORT);
+        Format erTime = new SimpleDateFormat("HH.mm.ss");
         JLabel ertimelabel = new JLabel("End Time:");
         JFormattedTextField ertimeinput = new JFormattedTextField(erTime);
         ertimeinput.setValue(new Date());
@@ -178,7 +179,7 @@ public class safedec extends JFrame{
         subpanel3.add(sensortype6);
 
         subpanel3.add(Box.createVerticalStrut(10));
-        Format sr2Time = DateFormat.getTimeInstance(DateFormat.SHORT);
+        Format sr2Time = new SimpleDateFormat("HH.mm.ss");
         JLabel sr2timelabel = new JLabel("Start Time:");
         JFormattedTextField sr2timeinput = new JFormattedTextField(sr2Time);
         sr2timeinput.setValue(new Date());
@@ -187,7 +188,7 @@ public class safedec extends JFrame{
         subpanel3.add(sr2timelabel);
         subpanel3.add(Box.createVerticalStrut(3));
         subpanel3.add(sr2timeinput);
-        Format er2Time = DateFormat.getTimeInstance(DateFormat.SHORT);
+        Format er2Time = new SimpleDateFormat("HH.mm.ss");
         JLabel er2timelabel = new JLabel("End Time:");
         JFormattedTextField er2timeinput = new JFormattedTextField(er2Time);
         er2timeinput.setValue(new Date());
@@ -243,20 +244,17 @@ public class safedec extends JFrame{
 
         bill = new JButton("Check bill");
         bill.setPreferredSize(new Dimension(200,40));
-        displaybill = new JTextArea("bill price :            ");
-        displaybill.setBackground(Color.white);
         subpanel4.add(bill);
         subpanel4.setLayout(new FlowLayout(FlowLayout.LEFT));
         mainpanel.add(subpanel4);
 
-        ArrayList<HomeRoomCreator> roomlist = new ArrayList<HomeRoomCreator>();
-        final Factory[] serviceobj1 = new Factory[1];
+        ArrayList<HashMap<String, Object>> roominfo = new ArrayList<HashMap<String, Object>>();
         final Factory[] serviceobj2 = new Factory[1];
         final Factory[] serviceobj3 = new Factory[1];
-        final Schedule[] lvr = new Schedule[1];
-        final Schedule[] rm1 = new Schedule[1];
-        final Schedule[] rm2 = new Schedule[1];
 
+        HashMap<String, Object> lvr = new HashMap<>();
+        HashMap<String, Object> rm1 = new HashMap<>();
+        HashMap<String, Object> rm2 = new HashMap<>();
         schedule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -274,60 +272,70 @@ public class safedec extends JFrame{
                 // Fetching start time and end time for schedule object
                 if (servtype1.isSelected()) {
                     System.out.println("text is "+servtype1.getText());
-                   // serviceobj1[0] = new FireFactory(0);
+                    lvr.put("Fire", true);
                 }
                 if (servtype2.isSelected()) {
                     System.out.println("text is "+servtype2.getText());
+                    lvr.put("Security", true);
                     if (sensortype1.isSelected())
                     {
                         System.out.println("text is "+sensortype1.getText());
-                       // serviceobj1[0] = new SecurityFactory(1);
+                        lvr.put("Camera", true);
                     }
                     else
                     {
                         System.out.println("text is "+sensortype2.getText());
-                       // serviceobj1[0] = new SecurityFactory(0);
+                        lvr.put("Camera", false);
                     }
 
                 }
-
+                lvr.put("id", 1);
                 if (servtype3.isSelected()) {
                     System.out.println("text is "+servtype3.getText());
-                   // serviceobj2[0] = new FireFactory(0);
+                    rm1.put("Fire", true);
+
                 }
                 if (servtype4.isSelected()) {
+                    rm1.put("Security", true);
                     System.out.println("text is "+servtype4.getText());
                     if (sensortype3.isSelected())
                     {
+                        rm1.put("Camera", true);
                         System.out.println("text is "+sensortype3.getText());
-                       // serviceobj2[0] = new SecurityFactory(1);
+
                     }
                     else
                     {
+                        rm1.put("Camera", false);
                         System.out.println("text is "+sensortype4.getText());
-                       // serviceobj2[0] = new SecurityFactory(0);
+
                     }
 
                 }
-
+                rm1.put("id", 2);
                 if (servtype5.isSelected()) {
                     System.out.println("text is "+servtype5.getText());
-                    //serviceobj3[0] = new FireFactory(0);
+                    rm2.put("Fire", true);
+
                 }
                 if (servtype6.isSelected()) {
                     System.out.println("text is "+servtype6.getText());
+                    rm2.put("Security", true);
                     if (sensortype5.isSelected())
                     {
+                        rm2.put("Camera", true);
                         System.out.println("text is "+sensortype5.getText());
-                      //  serviceobj3[0] = new SecurityFactory(1);
+
                     }
                     else
                     {
+                        rm2.put("Camera", false);
                         System.out.println("text is "+sensortype6.getText());
-                       // serviceobj3[0] = new SecurityFactory(0);
+
                     }
 
                 }
+                rm2.put("id", 3);
 
                 // Creating Userobject
                 System.out.println("username is "+ username.getText());
@@ -346,9 +354,12 @@ public class safedec extends JFrame{
                 System.out.println("start time value for room1 "+srtimeinput.getText());
                 System.out.println("end time value for room1 "+ertimeinput.getText());
 
-                lvr[0] = new HomeSchedule(stimeinput.getText(), etimeinput.getText());
-                rm1[0] = new HomeSchedule(srtimeinput.getText(), ertimeinput.getText());
-                rm2[0] = new HomeSchedule(sr2timeinput.getText(), er2timeinput.getText());
+                lvr.put("startTime", stimeinput.getText());
+                lvr.put("endTime", etimeinput.getText());
+                rm1.put("startTime", srtimeinput.getText());
+                rm1.put("endTime", ertimeinput.getText());
+                rm2.put("startTime", sr2timeinput.getText());
+                rm2.put("endTime", er2timeinput.getText());
 
                 //Calling backend code frm here frm start monitoring button click and passing
                 // all input user object, room object(service object with camera or not
@@ -358,13 +369,13 @@ public class safedec extends JFrame{
                 // iterate over this arraylist for bill generation
 
                 // passing service obj(bool with_camera/without_camera) and schedule obj
-                //roomlist.add(new HomeRoomCreator(serviceobj1[0], lvr[0]));
-                //roomlist.add(new HomeRoomCreator(serviceobj2[0], rm1[0]));
-                //roomlist.add(new HomeRoomCreator(serviceobj3[0], rm2[0]));
+                roominfo.add(lvr);
+                roominfo.add(rm1);
+                roominfo.add(rm2);
 
                 // passing userobj as well to backend entry class object to store the info at backend
                 Backendentrypoint bp = new Backendentrypoint();
-                bp.EntryMainfunc(roomlist, userinput);
+                billuserinfo[0] = bp.EntryMainfunc(roominfo, userinput);
 
                 ActionListener ticktock = new ActionListener() {
                     public void actionPerformed(ActionEvent evnt) {
@@ -386,25 +397,17 @@ public class safedec extends JFrame{
                 breakin1.setRepeats(false);
                 breakin1.start();
 
-                //////////////////////////////////
-                /////// Bill generation logic handling  ////////
-                /////////////////////////////////
-                // passing userobj as well to bill generation class object
-
-                System.out.println("Hello world!");
-                singleton instance1 = singleton.getinstance();
-
-                System.out.println(instance1.getfireserviceamount());
-
-                singleton instance2 = singleton.getinstance();
-                System.out.println(instance2.getsecurityserviceamount());
-
             }
         });
 
         bill.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //subpanel5.setPreferredSize(new Dimension(500, 300));
+                displaybill = new JTextArea("bill price : "+ billuserinfo[0]);
+                displaybill.setBackground(Color.white);
+                displaybill.setPreferredSize(new Dimension(500, 300));
+                displaybill.setLineWrap(true);
                 subpanel5.add(displaybill);
                 mainpanel.add(subpanel5);
                 mainpanel.revalidate();
