@@ -10,12 +10,14 @@ public class concretesecuritystrategy implements billstrategy{
                 if (securityroom.get(i).hasCamera() == true)
                 {
                     long schedule_duration = securityroom.get(i).getSchedule().getDuration();
+                    System.out.println("schedule duration is "+schedule_duration);
                     securityamt = securityamt + (price_for_a_second_with_camera * schedule_duration);
+                    System.out.println("sec amt is "+securityamt);
                 }
 
             }
-            //return securityamt
-            return 0;
+            return securityamt;
+
         }
 }
 

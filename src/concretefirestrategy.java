@@ -8,10 +8,12 @@ public class concretefirestrategy implements billstrategy{
         for (int i=0;i< fireroom.size();i++)
         {
             long schedule_duration = fireroom.get(i).getSchedule().getDuration();
+            System.out.println("schedule duration is "+schedule_duration);
             fireamt = fireamt + (price_for_a_second * schedule_duration);
+            System.out.println("fire amt is "+fireamt);
 
         }
-        //return fireamt;
-        return 0;
+        return fireamt;
+
     }
 }

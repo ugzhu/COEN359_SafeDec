@@ -16,9 +16,8 @@ public class HomeRoomBuilder implements RoomBuilder{
     }
 
     public Room buildRoom(HashMap<String, Object> roomSpec){
-        if (!roomSpec.containsKey("id") || !roomSpec.containsKey("fire")
-                || !roomSpec.containsKey("security") || !roomSpec.containsKey("camera")
-                || !roomSpec.containsKey("startTime") || !roomSpec.containsKey("endTime")){
+        if (!roomSpec.containsKey("id") || !roomSpec.containsKey("Fire")
+                || !roomSpec.containsKey("Security") || !roomSpec.containsKey("startTime") || !roomSpec.containsKey("endTime")){
             System.out.println("Incorrect Room Spec Input");
             return null;
         }
@@ -33,13 +32,18 @@ public class HomeRoomBuilder implements RoomBuilder{
 
         try{
             id = (int) roomSpec.get("id");
-            fire = (boolean) roomSpec.get("fire");
-            security = (boolean) roomSpec.get("security");
-            camera = (boolean) roomSpec.get("camera");
+            fire = (boolean) roomSpec.get("Fire");
+            security = (boolean) roomSpec.get("Security");
             startTime = (String) roomSpec.get("startTime");
             endTime = (String) roomSpec.get("endTime");
         }catch (ClassCastException e){
             return null;
+        }
+        try{
+            camera = (boolean) roomSpec.get("Camera");
+        }
+        catch(NullPointerException e){
+            camera = false;
         }
 
         Room r = roomCreator.createHomeRoom(id);

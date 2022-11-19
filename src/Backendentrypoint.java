@@ -13,6 +13,7 @@ public class Backendentrypoint {
         List<Room> rooms = new ArrayList<>();
         RoomBuilder roomBuilder = HomeRoomBuilder.instance();
         for (int i = 0; i < roomlist.size(); i++) {
+            System.out.println(roomlist.get(i));
             Room r = roomBuilder.buildRoom(roomlist.get(i));
             System.out.println("start time is "+roomlist.get(i).get("startTime"));
             rooms.add(r);
@@ -25,9 +26,12 @@ public class Backendentrypoint {
         ConcreteBillBuilder cbobj = new ConcreteBillBuilder(billnumber);
         cbobj.get_fire_rooms_info(rooms);
         long fireamt = cbobj.generatefirebill();
+        System.out.println("in backend entry fire amt"+fireamt);
         cbobj.get_security_rooms_info(rooms);
         long securityamt = cbobj.generatesecuritybill();
+        System.out.println("in backend entry security amt"+securityamt);
         long totalamt = cbobj.calculate_totalamount(fireamt, securityamt);
+        System.out.println("in backend entry totalamt"+totalamt);
         String billforuser = cbobj.displaytotalamount(totalamt, userobj);
         // pass billforuser to UI.
         return billforuser;

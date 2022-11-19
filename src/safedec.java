@@ -68,7 +68,7 @@ public class safedec extends JFrame{
         subpanel1.add(Box.createVerticalStrut(2));
         subpanel1.add(sensortype2);
 
-        Format sTime = new SimpleDateFormat("HH.mm.ss");
+        Format sTime = new SimpleDateFormat("HH:mm:ss");
         JLabel stimelabel = new JLabel("Start Time:");
         JFormattedTextField stimeinput = new JFormattedTextField(sTime);
         stimeinput.setValue(new Date());
@@ -77,7 +77,7 @@ public class safedec extends JFrame{
         subpanel1.add(stimelabel);
         subpanel1.add(Box.createVerticalStrut(3));
         subpanel1.add(stimeinput);
-        Format eTime = new SimpleDateFormat("HH.mm.ss");
+        Format eTime = new SimpleDateFormat("HH:mm:ss");
         JLabel etimelabel = new JLabel("End Time:");
         JFormattedTextField etimeinput = new JFormattedTextField(eTime);
         etimeinput.setValue(new Date());
@@ -125,7 +125,7 @@ public class safedec extends JFrame{
 
         subpanel2.add(Box.createVerticalStrut(10));
 
-        Format srTime = new SimpleDateFormat("HH.mm.ss");
+        Format srTime = new SimpleDateFormat("HH:mm:ss");
         JLabel srtimelabel = new JLabel("Start Time:");
         JFormattedTextField srtimeinput = new JFormattedTextField(srTime);
         srtimeinput.setValue(new Date());
@@ -134,7 +134,7 @@ public class safedec extends JFrame{
         subpanel2.add(srtimelabel);
         subpanel2.add(Box.createVerticalStrut(3));
         subpanel2.add(srtimeinput);
-        Format erTime = new SimpleDateFormat("HH.mm.ss");
+        Format erTime = new SimpleDateFormat("HH:mm:ss");
         JLabel ertimelabel = new JLabel("End Time:");
         JFormattedTextField ertimeinput = new JFormattedTextField(erTime);
         ertimeinput.setValue(new Date());
@@ -179,7 +179,7 @@ public class safedec extends JFrame{
         subpanel3.add(sensortype6);
 
         subpanel3.add(Box.createVerticalStrut(10));
-        Format sr2Time = new SimpleDateFormat("HH.mm.ss");
+        Format sr2Time = new SimpleDateFormat("HH:mm:ss");
         JLabel sr2timelabel = new JLabel("Start Time:");
         JFormattedTextField sr2timeinput = new JFormattedTextField(sr2Time);
         sr2timeinput.setValue(new Date());
@@ -188,7 +188,7 @@ public class safedec extends JFrame{
         subpanel3.add(sr2timelabel);
         subpanel3.add(Box.createVerticalStrut(3));
         subpanel3.add(sr2timeinput);
-        Format er2Time = new SimpleDateFormat("HH.mm.ss");
+        Format er2Time = new SimpleDateFormat("HH:mm:ss");
         JLabel er2timelabel = new JLabel("End Time:");
         JFormattedTextField er2timeinput = new JFormattedTextField(er2Time);
         er2timeinput.setValue(new Date());
@@ -274,6 +274,10 @@ public class safedec extends JFrame{
                     System.out.println("text is "+servtype1.getText());
                     lvr.put("Fire", true);
                 }
+                if (!servtype1.isSelected()) {
+                    System.out.println("text is "+servtype1.getText());
+                    lvr.put("Fire", false);
+                }
                 if (servtype2.isSelected()) {
                     System.out.println("text is "+servtype2.getText());
                     lvr.put("Security", true);
@@ -289,11 +293,18 @@ public class safedec extends JFrame{
                     }
 
                 }
+                if (!servtype2.isSelected()) {
+                    System.out.println("text is "+servtype1.getText());
+                    lvr.put("Security", false);
+                }
                 lvr.put("id", 1);
                 if (servtype3.isSelected()) {
                     System.out.println("text is "+servtype3.getText());
                     rm1.put("Fire", true);
-
+                }
+                if (!servtype3.isSelected()) {
+                    System.out.println("text is "+servtype3.getText());
+                    rm1.put("Fire", false);
                 }
                 if (servtype4.isSelected()) {
                     rm1.put("Security", true);
@@ -312,11 +323,18 @@ public class safedec extends JFrame{
                     }
 
                 }
+                if (!servtype4.isSelected()) {
+                    rm1.put("Security", false);
+                }
                 rm1.put("id", 2);
                 if (servtype5.isSelected()) {
                     System.out.println("text is "+servtype5.getText());
                     rm2.put("Fire", true);
 
+                }
+                if (!servtype5.isSelected()) {
+                    System.out.println("text is "+servtype5.getText());
+                    rm2.put("Fire", false);
                 }
                 if (servtype6.isSelected()) {
                     System.out.println("text is "+servtype6.getText());
@@ -334,6 +352,10 @@ public class safedec extends JFrame{
 
                     }
 
+                }
+                if (!servtype6.isSelected()) {
+                    System.out.println("text is " + servtype6.getText());
+                    rm2.put("Security", false);
                 }
                 rm2.put("id", 3);
 
