@@ -6,5 +6,5 @@ public interface Billbuilderinterface {
     public long generatefirebill();
     public long generatesecuritybill();
     public long calculate_totalamount(long famt, long samt);
-    public String displaytotalamount(long amt, User obj);
+    public String displaytotalamount(long totalamt, User obj, long fireamt, long securityamt);
 }

@@ -26,8 +26,12 @@ public class firesingleton {
     public long getfireserviceamount(List<Room> fireroom)
     {
 
-        billstrategy bs = new concretefirestrategy();
-        this.fireservicebillamount = bs.generatebill(fireroom);
+        if (fireroom.size()> 0)
+        {
+            billstrategy bs = new concretefirestrategy();
+            this.fireservicebillamount = bs.generatebill(fireroom);
+            return this.fireservicebillamount;
+        }
         return this.fireservicebillamount;
     }
 }

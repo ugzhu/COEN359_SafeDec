@@ -25,12 +25,16 @@ public class securitysingleton {
 
     public long getsecurityserviceamount(List<Room> securityroom)
     {
-        System.out.println("room 0 id is "+securityroom.get(0).getId());
-        billstrategy bswithcamera = new concretesecuritystrategy();
-        long billwithcamera = bswithcamera.generatebill(securityroom);
-        billstrategy bswithoutcamera = new concretesecuritywithoutcamerastrategy();
-        long billwithoutcamera = bswithoutcamera.generatebill(securityroom);
-        this.securityservicebillamount = billwithcamera + billwithoutcamera;
+        if (securityroom.size() >0)
+        {
+            System.out.println("room 0 id is "+securityroom.get(0).getId());
+            billstrategy bswithcamera = new concretesecuritystrategy();
+            long billwithcamera = bswithcamera.generatebill(securityroom);
+            billstrategy bswithoutcamera = new concretesecuritywithoutcamerastrategy();
+            long billwithoutcamera = bswithoutcamera.generatebill(securityroom);
+            this.securityservicebillamount = billwithcamera + billwithoutcamera;
+            return this.securityservicebillamount;
+        }
         return this.securityservicebillamount;
     }
 

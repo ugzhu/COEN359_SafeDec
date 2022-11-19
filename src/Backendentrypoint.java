@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.*;
 
 public class Backendentrypoint {
 
@@ -19,8 +21,6 @@ public class Backendentrypoint {
             rooms.add(r);
         }
 
-        // data generated: List<Room> rooms, Schedule schedule
-
         //Calling bill generation logic
         int billnumber = 1;
         ConcreteBillBuilder cbobj = new ConcreteBillBuilder(billnumber);
@@ -32,7 +32,7 @@ public class Backendentrypoint {
         System.out.println("in backend entry security amt"+securityamt);
         long totalamt = cbobj.calculate_totalamount(fireamt, securityamt);
         System.out.println("in backend entry totalamt"+totalamt);
-        String billforuser = cbobj.displaytotalamount(totalamt, userobj);
+        String billforuser = cbobj.displaytotalamount(totalamt, userobj, fireamt, securityamt);
         // pass billforuser to UI.
         return billforuser;
     }

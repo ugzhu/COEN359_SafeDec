@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class safedec extends JFrame{
@@ -56,14 +58,14 @@ public class safedec extends JFrame{
         servname4 = new JLabel("sensor types");
         subpanel1.add(servname1);
         servtype1 = new JCheckBox("Fire");
-        servtype2 = new JCheckBox("security");
+        servtype2 = new JCheckBox("Security");
         subpanel1.add(servtype1);
         subpanel1.add(Box.createVerticalStrut(2));
         subpanel1.add(servtype2);
         subpanel1.add(Box.createVerticalStrut(10));
         subpanel1.add(servname4);
-        sensortype1 = new JCheckBox("with camera");
-        sensortype2 = new JCheckBox("without camera");
+        sensortype1 = new JCheckBox("Security service with camera");
+        sensortype2 = new JCheckBox("Security service without camera");
         subpanel1.add(sensortype1);
         subpanel1.add(Box.createVerticalStrut(2));
         subpanel1.add(sensortype2);
@@ -111,14 +113,14 @@ public class safedec extends JFrame{
         subpanel2.add(Box.createVerticalStrut(10));
         subpanel2.add(servname2);
         servtype3 = new JCheckBox("Fire");
-        servtype4 = new JCheckBox("security");
+        servtype4 = new JCheckBox("Security");
         subpanel2.add(servtype3);
         subpanel2.add(Box.createVerticalStrut(2));
         subpanel2.add(servtype4);
         subpanel2.add(Box.createVerticalStrut(10));
         subpanel2.add(servname5);
-        sensortype3 = new JCheckBox("with camera");
-        sensortype4 = new JCheckBox("without camera");
+        sensortype3 = new JCheckBox("Security service with camera");
+        sensortype4 = new JCheckBox("Security service without camera");
         subpanel2.add(sensortype3);
         subpanel2.add(Box.createVerticalStrut(2));
         subpanel2.add(sensortype4);
@@ -166,14 +168,14 @@ public class safedec extends JFrame{
         subpanel3.add(Box.createVerticalStrut(10));
         subpanel3.add(servname3);
         servtype5 = new JCheckBox("Fire");
-        servtype6 = new JCheckBox("security");
+        servtype6 = new JCheckBox("Security");
         subpanel3.add(servtype5);
         subpanel3.add(Box.createVerticalStrut(2));
         subpanel3.add(servtype6);
         subpanel3.add(Box.createVerticalStrut(10));
         subpanel3.add(servname6);
-        sensortype5 = new JCheckBox("with camera");
-        sensortype6 = new JCheckBox("without camera");
+        sensortype5 = new JCheckBox("Security service with camera");
+        sensortype6 = new JCheckBox("Security service without camera");
         subpanel3.add(sensortype5);
         subpanel3.add(Box.createVerticalStrut(2));
         subpanel3.add(sensortype6);
@@ -220,15 +222,15 @@ public class safedec extends JFrame{
 
         JPanel userpanel = new JPanel();
         schedule = new JButton("Start monitoring");
-        JLabel userlabel = new JLabel("username");
+        JLabel userlabel = new JLabel("Username");
         userpanel.add(userlabel);
         JTextField username = new JTextField(20);
         userpanel.add(username);
-        JLabel passlabel = new JLabel("password");
+        JLabel passlabel = new JLabel("Password");
         userpanel.add(passlabel);
         JPasswordField password = new JPasswordField(20);
         userpanel.add(password);
-        JLabel telephlabel = new JLabel("telephone");
+        JLabel telephlabel = new JLabel("Telephone");
         userpanel.add(telephlabel);
         JTextField telephone = new JTextField(20);
         userpanel.add(telephone);
@@ -236,13 +238,13 @@ public class safedec extends JFrame{
         userpanel.setPreferredSize(new Dimension(300,300));
         userpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         userpanel.add(schedule);
-        JButton disarm = new JButton("Disarm");
-        disarm.setPreferredSize(new Dimension(100,35));
+        JButton disarm = new JButton("Disarm monitoring");
+        disarm.setPreferredSize(new Dimension(150,35));
         userpanel.add(disarm);
         mainpanel.add(userpanel);
 
 
-        bill = new JButton("Check bill");
+        bill = new JButton("Display bill");
         bill.setPreferredSize(new Dimension(200,40));
         subpanel4.add(bill);
         subpanel4.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -255,10 +257,12 @@ public class safedec extends JFrame{
         HashMap<String, Object> lvr = new HashMap<>();
         HashMap<String, Object> rm1 = new HashMap<>();
         HashMap<String, Object> rm2 = new HashMap<>();
+        final User[] userinput = new User[1];
+
         schedule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Schedule started");
+                JOptionPane.showMessageDialog(null,"Schedule Started !");
                 subpanel1.setBackground(Color.YELLOW);
                 subpanel2.setBackground(Color.YELLOW);
                 subpanel3.setBackground(Color.YELLOW);
@@ -366,8 +370,21 @@ public class safedec extends JFrame{
                 System.out.println("password is "+passwordvalue);
                 String telephonevalue = telephone.getText();
                 System.out.println("telephone is "+telephonevalue);
-                User userinput = new HomeUser(uservalue, passwordvalue, telephonevalue);
+                userinput[0] = new HomeUser(uservalue, passwordvalue, telephonevalue);
 
+                // Telephone validation
+                Pattern p = Pattern.compile(
+                        "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$");
+
+                Matcher m = p.matcher(userinput[0].get_telephone());
+                if (m.matches() == false)
+                {
+                    System.out.println("here");
+                    JOptionPane.showMessageDialog(null,"Please enter correct phone number !");
+                }
+                username.setText("");
+                password.setText("");
+                telephone.setText("");
                 // Creating schedule obj per room
                 System.out.println("start time value for hall is "+ stimeinput.getText() );
                 System.out.println("end time value for hall is "+etimeinput.getText());
@@ -397,7 +414,7 @@ public class safedec extends JFrame{
 
                 // passing userobj as well to backend entry class object to store the info at backend
                 Backendentrypoint bp = new Backendentrypoint();
-                billuserinfo[0] = bp.EntryMainfunc(roominfo, userinput);
+                billuserinfo[0] = bp.EntryMainfunc(roominfo, userinput[0]);
 
                 ActionListener ticktock = new ActionListener() {
                     public void actionPerformed(ActionEvent evnt) {
@@ -426,7 +443,7 @@ public class safedec extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //subpanel5.setPreferredSize(new Dimension(500, 300));
-                displaybill = new JTextArea("bill price : "+ billuserinfo[0]);
+                displaybill = new JTextArea(billuserinfo[0]);
                 displaybill.setBackground(Color.white);
                 displaybill.setPreferredSize(new Dimension(500, 300));
                 displaybill.setLineWrap(true);
@@ -441,11 +458,53 @@ public class safedec extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null,"Stopping the Break-in alarm notification");
-                subpanel1.setBackground(Color.GREEN);
-                subpanel2.setBackground(Color.GREEN);
-                subpanel3.setBackground(Color.GREEN);
-                mainpanel.revalidate();
-                mainpanel.repaint();
+                String user = username.getText();
+                System.out.println("user is "+user);
+                String passw = new String(password.getPassword());
+                System.out.println("passwd is "+passw);
+                String telestr = telephone.getText();
+                System.out.println("telestr is "+telestr);
+                System.out.println("userobj user is "+userinput[0].get_user());
+                System.out.println("userobj passwdd  is "+userinput[0].get_password());
+                System.out.println("userobj tele  is "+userinput[0].get_telephone());
+                if (!user.equals(userinput[0].get_user()) )
+                {
+                    JOptionPane.showMessageDialog(null,"Username doesnt match");
+                }
+                if (!(passw.equals(userinput[0].get_password()))) {
+                    JOptionPane.showMessageDialog(null,"Password doesnt match");
+                }
+                if (!(telestr.equals(userinput[0].get_telephone()))) {
+                    JOptionPane.showMessageDialog(null,"Telephone doesnt match");
+                }
+                if ((user.equals(userinput[0].get_user())) && (passw.equals(userinput[0].get_password())) && (telestr.equals(userinput[0].get_telephone())) ) {
+                    subpanel1.setBackground(Color.GREEN);
+                    subpanel2.setBackground(Color.GREEN);
+                    subpanel3.setBackground(Color.GREEN);
+                    username.setText("");
+                    password.setText("");
+                    telephone.setText("");
+                    servtype1.setSelected(false);
+                    servtype2.setSelected(false);
+                    servtype3.setSelected(false);
+                    servtype4.setSelected(false);
+                    servtype5.setSelected(false);
+                    servtype6.setSelected(false);
+                    sensortype1.setSelected(false);
+                    sensortype2.setSelected(false);
+                    sensortype3.setSelected(false);
+                    sensortype4.setSelected(false);
+                    sensortype5.setSelected(false);
+                    sensortype6.setSelected(false);
+                    subpanel1.repaint();
+                    subpanel1.revalidate();
+                    subpanel2.repaint();
+                    subpanel2.revalidate();
+                    subpanel3.repaint();
+                    subpanel3.revalidate();
+                    mainpanel.revalidate();
+                    mainpanel.repaint();
+                }
             }
         });
         mainpanel.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 0));
