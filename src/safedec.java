@@ -37,7 +37,8 @@ public class safedec extends JFrame{
     private JTextField hrs_sch;
     private JLabel hrslabel;
     private JPanel hrs_panel;
-
+    private JButton cleardisplay;
+    private JButton validateinput;
     public safedec(String title)
     {
         super(title);
@@ -221,6 +222,8 @@ public class safedec extends JFrame{
         mainpanel.add(subpanel3);
 
         JPanel userpanel = new JPanel();
+        validateinput = new JButton("Validate input");
+        validateinput.setPreferredSize(new Dimension(150,35));
         schedule = new JButton("Start monitoring");
         JLabel userlabel = new JLabel("Username");
         userpanel.add(userlabel);
@@ -237,6 +240,7 @@ public class safedec extends JFrame{
         schedule.setPreferredSize(new Dimension(150,35));
         userpanel.setPreferredSize(new Dimension(300,300));
         userpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        userpanel.add(validateinput);
         userpanel.add(schedule);
         JButton disarm = new JButton("Disarm monitoring");
         disarm.setPreferredSize(new Dimension(150,35));
@@ -247,6 +251,11 @@ public class safedec extends JFrame{
         bill = new JButton("Display bill");
         bill.setPreferredSize(new Dimension(200,40));
         subpanel4.add(bill);
+
+        cleardisplay = new JButton("Clear bill");
+        cleardisplay.setPreferredSize(new Dimension(200,40));
+        subpanel4.add(cleardisplay);
+
         subpanel4.setLayout(new FlowLayout(FlowLayout.LEFT));
         mainpanel.add(subpanel4);
 
@@ -262,12 +271,6 @@ public class safedec extends JFrame{
         schedule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Schedule Started !");
-                subpanel1.setBackground(Color.YELLOW);
-                subpanel2.setBackground(Color.YELLOW);
-                subpanel3.setBackground(Color.YELLOW);
-                mainpanel.revalidate();
-                mainpanel.repaint();
 
                 // Creating service obj with camera/camera_not boolean
                 // Fetching user inputs given in UI
@@ -370,21 +373,19 @@ public class safedec extends JFrame{
                 System.out.println("password is "+passwordvalue);
                 String telephonevalue = telephone.getText();
                 System.out.println("telephone is "+telephonevalue);
+
                 userinput[0] = new HomeUser(uservalue, passwordvalue, telephonevalue);
-
-                // Telephone validation
-                Pattern p = Pattern.compile(
-                        "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$");
-
-                Matcher m = p.matcher(userinput[0].get_telephone());
-                if (m.matches() == false)
-                {
-                    System.out.println("here");
-                    JOptionPane.showMessageDialog(null,"Please enter correct phone number !");
-                }
                 username.setText("");
                 password.setText("");
                 telephone.setText("");
+
+                JOptionPane.showMessageDialog(null,"Schedule Started !");
+                subpanel1.setBackground(Color.YELLOW);
+                subpanel2.setBackground(Color.YELLOW);
+                subpanel3.setBackground(Color.YELLOW);
+                mainpanel.revalidate();
+                mainpanel.repaint();
+
                 // Creating schedule obj per room
                 System.out.println("start time value for hall is "+ stimeinput.getText() );
                 System.out.println("end time value for hall is "+etimeinput.getText());
@@ -452,6 +453,36 @@ public class safedec extends JFrame{
                 mainpanel.revalidate();
                 mainpanel.repaint();
             }
+
+
+        });
+
+        cleardisplay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                subpanel5.remove(displaybill);
+                mainpanel.add(subpanel5);
+                mainpanel.revalidate();
+                mainpanel.repaint();
+            }
+
+
+        });
+
+        validateinput.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("username is "+ username.getText());
+                String uservalue = username.getText();
+                String passwordvalue = new String(password.getPassword());
+                System.out.println("password is "+passwordvalue);
+                String telephonevalue = telephone.getText();
+                System.out.println("telephone is "+telephonevalue);
+
+                validate(telephonevalue);
+            }
+
+
         });
 
         disarm.addActionListener(new ActionListener() {
@@ -466,7 +497,7 @@ public class safedec extends JFrame{
                 System.out.println("telestr is "+telestr);
                 System.out.println("userobj user is "+userinput[0].get_user());
                 System.out.println("userobj passwdd  is "+userinput[0].get_password());
-                System.out.println("userobj tele  is "+userinput[0].get_telephone());
+                System.out.println("userobj telephone  is "+userinput[0].get_telephone());
                 if (!user.equals(userinput[0].get_user()) )
                 {
                     JOptionPane.showMessageDialog(null,"Username doesnt match");
@@ -520,6 +551,22 @@ public class safedec extends JFrame{
 
         frame1.setVisible(true);
 
+    }
+
+    public boolean validate(String telephonevalue)
+    {
+        // Telephone validation
+        Pattern p = Pattern.compile(
+                "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$");
+
+        Matcher m = p.matcher(telephonevalue);
+        if (m.matches() == false)
+        {
+            System.out.println("here");
+            JOptionPane.showMessageDialog(mainpanel,"Please enter correct telephone number");
+            return false;
+        }
+        return true;
     }
 }
 
