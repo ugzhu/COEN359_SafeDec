@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 public class concretebill {
@@ -15,15 +16,15 @@ public class concretebill {
         this.securityinst = securitysingleton.getinstance(billnumber);
     }
 
-    public long get_fire_bill(List<Room> fireroom)
+    public long get_fire_bill(List<Room> fireroom, List<HashMap<String, Integer>> perroomprice)
     {
-        long totalfireamt = this.fireinst.getfireserviceamount(fireroom);
+        long totalfireamt = this.fireinst.getfireserviceamount(fireroom, perroomprice);
         return totalfireamt;
 
     }
-    public long get_security_bill(List<Room> securityroom)
+    public long get_security_bill(List<Room> securityroom, List<HashMap<String, Integer>> perroomprice)
     {
-        long totalsecurityamt = this.securityinst.getsecurityserviceamount(securityroom);
+        long totalsecurityamt = this.securityinst.getsecurityserviceamount(securityroom, perroomprice);
         return totalsecurityamt;
 
     }

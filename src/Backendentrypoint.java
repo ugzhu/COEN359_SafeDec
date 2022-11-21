@@ -22,17 +22,18 @@ public class Backendentrypoint {
         }
 
         //Calling bill generation logic
+        List<HashMap<String, Integer>> perroomprice = new ArrayList<HashMap<String, Integer>>();
         int billnumber = 1;
-        ConcreteBillBuilder cbobj = new ConcreteBillBuilder(billnumber);
+        Billbuilderinterface cbobj = new ConcreteBillBuilder(billnumber);
         cbobj.get_fire_rooms_info(rooms);
-        long fireamt = cbobj.generatefirebill();
+        long fireamt = cbobj.generatefirebill(perroomprice);
         System.out.println("in backend entry fire amt"+fireamt);
         cbobj.get_security_rooms_info(rooms);
-        long securityamt = cbobj.generatesecuritybill();
+        long securityamt = cbobj.generatesecuritybill(perroomprice);
         System.out.println("in backend entry security amt"+securityamt);
         long totalamt = cbobj.calculate_totalamount(fireamt, securityamt);
         System.out.println("in backend entry totalamt"+totalamt);
-        String billforuser = cbobj.displaytotalamount(totalamt, userobj, fireamt, securityamt);
+        String billforuser = cbobj.displaytotalamount(totalamt, userobj, fireamt, securityamt, perroomprice);
         // pass billforuser to UI.
         return billforuser;
     }

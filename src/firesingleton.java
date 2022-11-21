@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 public class firesingleton {
@@ -23,13 +24,13 @@ public class firesingleton {
         return instancecopy;
     }
 
-    public long getfireserviceamount(List<Room> fireroom)
+    public long getfireserviceamount(List<Room> fireroom, List<HashMap<String, Integer>> perroomprice)
     {
 
         if (fireroom.size()> 0)
         {
             billstrategy bs = new concretefirestrategy();
-            this.fireservicebillamount = bs.generatebill(fireroom);
+            this.fireservicebillamount = bs.generatebill(fireroom, perroomprice);
             return this.fireservicebillamount;
         }
         return this.fireservicebillamount;

@@ -305,6 +305,8 @@ public class safedec extends JFrame{
                     lvr.put("Security", false);
                 }
                 lvr.put("id", 1);
+                lvr.put("days", day_sch.getText());
+
                 if (servtype3.isSelected()) {
                     System.out.println("text is "+servtype3.getText());
                     rm1.put("Fire", true);
@@ -334,6 +336,8 @@ public class safedec extends JFrame{
                     rm1.put("Security", false);
                 }
                 rm1.put("id", 2);
+                rm1.put("days", day_sch2.getText());
+
                 if (servtype5.isSelected()) {
                     System.out.println("text is "+servtype5.getText());
                     rm2.put("Fire", true);
@@ -365,6 +369,7 @@ public class safedec extends JFrame{
                     rm2.put("Security", false);
                 }
                 rm2.put("id", 3);
+                rm2.put("days", day_sch3.getText());
 
                 // Creating Userobject
                 System.out.println("username is "+ username.getText());
