@@ -1,25 +1,25 @@
 import java.util.HashMap;
 import java.util.List;
 
-public class firesingleton {
+public class FireSingleton {
 
-    private static firesingleton instancecopy;
+    private static FireSingleton instancecopy;
 
     private int billnumber;
     private long fireservicebillamount;
 
-    private firesingleton(int billnumber)
+    private FireSingleton(int billnumber)
     {
         this.billnumber = billnumber;
         System.out.println("*****bill number is "+this.billnumber);
 
     }
 
-    public static firesingleton getinstance(int billnumber)
+    public static FireSingleton getinstance(int billnumber)
     {
         if (instancecopy == null)
         {
-            instancecopy = new firesingleton(billnumber);
+            instancecopy = new FireSingleton(billnumber);
         }
         return instancecopy;
     }
@@ -29,7 +29,7 @@ public class firesingleton {
 
         if (fireroom.size()> 0)
         {
-            billstrategy bs = new concretefirestrategy();
+            BillStrategy bs = new ConcreteFireStrategy();
             this.fireservicebillamount = bs.generatebill(fireroom, perroomprice);
             return this.fireservicebillamount;
         }

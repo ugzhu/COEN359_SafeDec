@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class safedec extends JFrame{
+public class SafeDecApplicationLauncher extends JFrame{
     public JPanel mainpanel;
     private JCheckBox servtype1;
     private JCheckBox servtype2;
@@ -39,7 +39,7 @@ public class safedec extends JFrame{
     private JPanel hrs_panel;
     private JButton cleardisplay;
     private JButton validateinput;
-    public safedec(String title)
+    public SafeDecApplicationLauncher(String title)
     {
         super(title);
         mainpanel = new JPanel();
@@ -419,7 +419,7 @@ public class safedec extends JFrame{
                 roominfo.add(rm2);
 
                 // passing userobj as well to backend entry class object to store the info at backend
-                Backendentrypoint bp = new Backendentrypoint();
+                BackendEntryPoint bp = new BackendEntryPoint();
                 billuserinfo[0] = bp.EntryMainfunc(roominfo, userinput[0]);
 
                 ActionListener ticktock = new ActionListener() {
@@ -552,7 +552,7 @@ public class safedec extends JFrame{
     public static void main(String[] args)
     {
         System.gc();
-        JFrame frame1= new safedec("Design pattern gui");
+        JFrame frame1= new SafeDecApplicationLauncher("Design pattern gui");
 
         frame1.setVisible(true);
 

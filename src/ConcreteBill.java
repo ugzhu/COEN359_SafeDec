@@ -1,19 +1,19 @@
 import java.util.HashMap;
 import java.util.List;
 
-public class concretebill {
+public class ConcreteBill {
 
     public int billnumber;
 
-    private firesingleton fireinst;
-    private securitysingleton securityinst;
+    private FireSingleton fireinst;
+    private SecuritySingleton securityinst;
 
-    public concretebill(int billnumber)
+    public ConcreteBill(int billnumber)
     {
         this.billnumber = billnumber;
         //calling firesingleton and securitysingleton objects
-        this.fireinst = firesingleton.getinstance(billnumber);
-        this.securityinst = securitysingleton.getinstance(billnumber);
+        this.fireinst = FireSingleton.getinstance(billnumber);
+        this.securityinst = SecuritySingleton.getinstance(billnumber);
     }
 
     public long get_fire_bill(List<Room> fireroom, List<HashMap<String, Integer>> perroomprice)

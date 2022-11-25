@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ConcreteBillBuilder implements Billbuilderinterface{
-    private concretebill obj;
+public class ConcreteBillBuilder implements BillBuilderInterface {
+    private ConcreteBill obj;
     private List<Room> fireroom;
     private List<Room> securityroom;
     private int billnumber;
     public ConcreteBillBuilder(int billnumber)
     {
         this.billnumber = billnumber;
-        this.obj = new concretebill(billnumber);
+        this.obj = new ConcreteBill(billnumber);
         this.fireroom = new ArrayList<Room>();
         this.securityroom = new ArrayList<Room>();
     }

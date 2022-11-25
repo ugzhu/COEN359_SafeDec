@@ -1,8 +1,7 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class concretefirestrategy implements billstrategy{
+public class ConcreteFireStrategy implements BillStrategy {
     private int price_for_a_second = 1;
     public long generatebill(List<Room> fireroom, List<HashMap<String, Integer>> perroomprice)
     {

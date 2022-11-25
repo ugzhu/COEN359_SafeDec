@@ -1,30 +1,28 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.*;
 
-public class Backendentrypoint {
+public class BackendEntryPoint {
 
     public String EntryMainfunc (ArrayList<HashMap<String, Object>> roomlist, User userinput) {
         System.out.println("********Backend Execution started");
 
         User userobj = userinput;
 
+        System.out.println("Input passed from UI:");
         /// create all rooms with/without services and camera
         List<Room> rooms = new ArrayList<>();
         RoomBuilder roomBuilder = HomeRoomBuilder.instance();
         for (int i = 0; i < roomlist.size(); i++) {
             System.out.println(roomlist.get(i));
             Room r = roomBuilder.buildRoom(roomlist.get(i));
-            System.out.println("start time is "+roomlist.get(i).get("startTime"));
             rooms.add(r);
         }
 
         //Calling bill generation logic
         List<HashMap<String, Integer>> perroomprice = new ArrayList<HashMap<String, Integer>>();
         int billnumber = 1;
-        Billbuilderinterface cbobj = new ConcreteBillBuilder(billnumber);
+        BillBuilderInterface cbobj = new ConcreteBillBuilder(billnumber);
         cbobj.get_fire_rooms_info(rooms);
         long fireamt = cbobj.generatefirebill(perroomprice);
         System.out.println("in backend entry fire amt"+fireamt);

@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.List;
 
-public interface Billbuilderinterface {
+public interface BillBuilderInterface {
     public void get_fire_rooms_info(List<Room> rooms);
     public void get_security_rooms_info(List<Room> rooms);
     public long generatefirebill(List<HashMap<String, Integer>> perroomprice);

@@ -1,25 +1,25 @@
 import java.util.HashMap;
 import java.util.List;
 
-public class securitysingleton {
+public class SecuritySingleton {
 
-    private static securitysingleton instancecopy;
+    private static SecuritySingleton instancecopy;
 
     private int billnumber;
     private long securityservicebillamount;
 
-    private securitysingleton(int billnumber)
+    private SecuritySingleton(int billnumber)
     {
         this.billnumber = billnumber;
         System.out.println("*****bill number is "+this.billnumber);
 
     }
 
-    public static securitysingleton getinstance(int billnumber)
+    public static SecuritySingleton getinstance(int billnumber)
     {
         if (instancecopy == null)
         {
-            instancecopy = new securitysingleton(billnumber);
+            instancecopy = new SecuritySingleton(billnumber);
         }
         return instancecopy;
     }
@@ -30,10 +30,10 @@ public class securitysingleton {
         {
             System.out.println("room 0 id is "+securityroom.get(0).getId());
 
-            billstrategy bswithcamera = new concretesecuritystrategy();
+            BillStrategy bswithcamera = new ConcreteSecurityStrategy();
             long billwithcamera = bswithcamera.generatebill(securityroom, perroomprice);
 
-            billstrategy bswithoutcamera = new concretesecuritywithoutcamerastrategy();
+            BillStrategy bswithoutcamera = new ConcreteSecurityWithoutCameraStrategy();
             long billwithoutcamera = bswithoutcamera.generatebill(securityroom, perroomprice);
 
             this.securityservicebillamount = billwithcamera + billwithoutcamera;
