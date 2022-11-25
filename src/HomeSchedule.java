@@ -11,5 +11,8 @@ public class HomeSchedule implements  Schedule{
         return timeToSeconds(endTime) - timeToSeconds(startTime);
     }
 
+    public Schedule getCore(){
+        return this;
+    }
 
 }

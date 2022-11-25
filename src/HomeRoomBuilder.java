@@ -29,6 +29,7 @@ public class HomeRoomBuilder implements RoomBuilder{
         String startTime;
         String endTime;
         Schedule schedule;
+        String days;
 
         try{
             id = (int) roomSpec.get("id");
@@ -36,6 +37,7 @@ public class HomeRoomBuilder implements RoomBuilder{
             security = (boolean) roomSpec.get("Security");
             startTime = (String) roomSpec.get("startTime");
             endTime = (String) roomSpec.get("endTime");
+            days = (String) roomSpec.get("days");
         }catch (ClassCastException e){
             return null;
         }
@@ -47,11 +49,17 @@ public class HomeRoomBuilder implements RoomBuilder{
         }
 
         Room r = roomCreator.createHomeRoom(id);
-        schedule = new HomeSchedule(startTime, endTime);
 
         if (camera) {r.addCamera();}
         if (fire) {r.addFireService(fireFactory.createService());}
         if (security) {r.addSecurityService(securityFactory.createService());}
+
+        schedule = new HomeSchedule(startTime, endTime);
+        if (!days.equals("") == !days.equals("1")) {
+            for (int i = 2; i <= Integer.parseInt(days); i++) {
+                schedule = new AddOneDayDecorator(schedule);
+            }
+        }
         r.addSchedule(schedule);
 
         return r;

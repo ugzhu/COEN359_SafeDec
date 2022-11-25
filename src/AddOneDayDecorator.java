@@ -7,9 +7,12 @@ public class AddOneDayDecorator implements Schedule{
     }
 
     public Schedule getCore(){
-        return decorated;
+        return decorated.getCore();
     }
+
+    // add core's duration one time for each decorator
+    // to represent one more day of monitoring
     public long getDuration() {
-        return decorated.getDuration() + 24 * 60 * 60;
+        return decorated.getDuration() + getCore().getDuration();
     }
 }
