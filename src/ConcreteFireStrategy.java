@@ -12,7 +12,7 @@ public class ConcreteFireStrategy implements BillStrategy {
             long schedule_duration = fireroom.get(i).getSchedule().getDuration();
             perroomfireamt = Integer.valueOf((price_for_a_second * (int)schedule_duration));
             HashMap<String, Integer> hm = new HashMap<>();
-            hm.put("amt",perroomfireamt );
+            hm.put("Fire",perroomfireamt );
             perroomprice.add(hm);
             System.out.println("schedule duration is "+schedule_duration);
             fireamt = fireamt + (price_for_a_second * schedule_duration);
