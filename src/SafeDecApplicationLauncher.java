@@ -552,7 +552,7 @@ public class SafeDecApplicationLauncher extends JFrame{
     public static void main(String[] args)
     {
         System.gc();
-        JFrame frame1= new SafeDecApplicationLauncher("Design pattern gui");
+        JFrame frame1= new SafeDecApplicationLauncher("SafeDec portal");
 
         frame1.setVisible(true);
 
