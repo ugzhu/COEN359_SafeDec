@@ -91,11 +91,11 @@ public class SafeDecApplicationLauncher extends JFrame{
         subpanel1.add(etimeinput);
 
         subpanel1.add(Box.createVerticalStrut(10));
-        JLabel orlabel = new JLabel("AND ");
-        subpanel1.add(orlabel);
+        //JLabel orlabel = new JLabel("AND ");
+        //subpanel1.add(orlabel);
         subpanel1.add(Box.createVerticalStrut(10));
         JTextField day_sch = new JTextField();
-        JLabel daylabel = new JLabel("select number of days in a weeks ");
+        JLabel daylabel = new JLabel("Schedule for days");
         subpanel1.add(Box.createVerticalStrut(3));
         subpanel1.add(daylabel);
 
@@ -147,11 +147,11 @@ public class SafeDecApplicationLauncher extends JFrame{
         subpanel2.add(Box.createVerticalStrut(3));
         subpanel2.add(ertimeinput);
         subpanel2.add(Box.createVerticalStrut(10));
-        JLabel orlabel2 = new JLabel("AND");
-        subpanel2.add(orlabel2);
+        //JLabel orlabel2 = new JLabel("AND");
+        //subpanel2.add(orlabel2);
         subpanel2.add(Box.createVerticalStrut(10));
         JTextField day_sch2 = new JTextField();
-        JLabel daylabel2 = new JLabel("select number of days in a weeks");
+        JLabel daylabel2 = new JLabel("Schedule for days");
         subpanel2.add(Box.createVerticalStrut(3));
         subpanel2.add(daylabel2);
 
@@ -202,11 +202,11 @@ public class SafeDecApplicationLauncher extends JFrame{
         subpanel3.add(er2timeinput);
 
         subpanel3.add(Box.createVerticalStrut(10));
-        JLabel orlabel3 = new JLabel("AND");
-        subpanel3.add(orlabel3);
+        //JLabel orlabel3 = new JLabel("AND");
+        //subpanel3.add(orlabel3);
         subpanel3.add(Box.createVerticalStrut(10));
         JTextField day_sch3 = new JTextField();
-        JLabel daylabel3 = new JLabel("select number of days in a weeks");
+        JLabel daylabel3 = new JLabel("Schedule for days");
         subpanel3.add(Box.createVerticalStrut(3));
         subpanel3.add(daylabel3);
 
@@ -571,6 +571,7 @@ public class SafeDecApplicationLauncher extends JFrame{
             JOptionPane.showMessageDialog(mainpanel,"Please enter correct telephone number");
             return false;
         }
+        JOptionPane.showMessageDialog(mainpanel,"Inputs are validated!");
         return true;
     }
 }

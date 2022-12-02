@@ -66,12 +66,32 @@ public class ConcreteBillBuilder implements BillBuilderInterface {
             System.out.println(perroomprice.get(i));
         }
 
-        String billinofdisplay = "User info: Username " + obj.get_user() + " with phone number registered " + obj.get_telephone() + "\n";
+        String billinofdisplay = "Customer Info: Customer Name " + obj.get_user() + " Phone number " + obj.get_telephone() + "\n";
         billinofdisplay = billinofdisplay.concat("------------------------------------------------------" + "\n");
-        billinofdisplay = billinofdisplay.concat("Current Bill for scheduled startTime and endTime : \n ");
-        billinofdisplay = billinofdisplay.concat("------------------------------------------------------" + "\n");
+        billinofdisplay = billinofdisplay.concat("Contract ID : 1000 \n");
         billinofdisplay = billinofdisplay.concat("User id =" + obj.get_id() + " Bill Number =" + this.billnumber + "\n");
-        billinofdisplay = billinofdisplay.concat("Total Bill Amount for both Fire and Security services = $" + totalamt + "\n");
+        billinofdisplay = billinofdisplay.concat("------------------------------------------------------" + "\n");
+        billinofdisplay = billinofdisplay.concat("Per seconds Fire service amt $1" + "\n");
+        billinofdisplay = billinofdisplay.concat("Per seconds Security without camera service amt $2" + "\n");
+        billinofdisplay = billinofdisplay.concat("Per seconds Security with camera service amt $3" + "\n");
+        billinofdisplay = billinofdisplay.concat("------------------------------------------------------" + "\n");
+        billinofdisplay = billinofdisplay.concat("Per room price \n ");
+        for (int i = 0; i < perroomprice.size();i++)
+        {
+            if (perroomprice.get(i).containsKey("Fire")) {
+                billinofdisplay = billinofdisplay.concat("Per Fire room  = "  + "price $" + perroomprice.get(i).get("Fire") + "\n");
+
+            }
+        }
+        for (int i = 0; i < perroomprice.size();i++)
+        {
+            if (perroomprice.get(i).containsKey("Security")) {
+                billinofdisplay = billinofdisplay.concat("Per Security room = "  + "price $" + perroomprice.get(i).get("Security") + "\n");
+
+            }
+        }
+        billinofdisplay = billinofdisplay.concat("------------------------------------------------------ : \n ");
+        billinofdisplay = billinofdisplay.concat("Total Bill Amount ( Fire and Security) services = $" + totalamt + "\n");
         billinofdisplay = billinofdisplay.concat("------------------------------------------------------" + "\n");
         billinofdisplay = billinofdisplay.concat("Fire Bill Amount = $" + fireamt + "\n");
         billinofdisplay = billinofdisplay.concat("Security Bill Amount = $" + securityamt);

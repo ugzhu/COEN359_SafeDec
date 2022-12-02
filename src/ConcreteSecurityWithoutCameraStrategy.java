@@ -14,7 +14,7 @@ public class ConcreteSecurityWithoutCameraStrategy implements BillStrategy {
                     long schedule_duration = securityroom.get(i).getSchedule().getDuration();
                     perroomsecurityamt = Integer.valueOf((price_for_a_second_with_camera * (int)schedule_duration));
                     HashMap<String, Integer> hm = new HashMap<>();
-                    hm.put("amt",perroomsecurityamt );
+                    hm.put("Security",perroomsecurityamt );
                     perroomprice.add(hm);
                     System.out.println("schedule duration is "+schedule_duration);
                     securityamt = securityamt + (price_for_a_second_with_camera * schedule_duration);
