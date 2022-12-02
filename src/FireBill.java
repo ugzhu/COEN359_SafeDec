@@ -1,25 +1,25 @@
 import java.util.HashMap;
 import java.util.List;
 
-public class FireSingleton {
+public class FireBill {
 
-    private static FireSingleton instancecopy;
+    private static FireBill instancecopy;
 
     private int billnumber;
     private long fireservicebillamount;
 
-    private FireSingleton(int billnumber)
+    private FireBill(int billnumber)
     {
         this.billnumber = billnumber;
         System.out.println("*****bill number is "+this.billnumber);
 
     }
 
-    public static FireSingleton getinstance(int billnumber)
+    public static FireBill getinstance(int billnumber)
     {
         if (instancecopy == null)
         {
-            instancecopy = new FireSingleton(billnumber);
+            instancecopy = new FireBill(billnumber);
         }
         return instancecopy;
     }

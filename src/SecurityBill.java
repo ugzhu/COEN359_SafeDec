@@ -1,25 +1,25 @@
 import java.util.HashMap;
 import java.util.List;
 
-public class SecuritySingleton {
+public class SecurityBill {
 
-    private static SecuritySingleton instancecopy;
+    private static SecurityBill instancecopy;
 
     private int billnumber;
     private long securityservicebillamount;
 
-    private SecuritySingleton(int billnumber)
+    private SecurityBill(int billnumber)
     {
         this.billnumber = billnumber;
         System.out.println("*****bill number is "+this.billnumber);
 
     }
 
-    public static SecuritySingleton getinstance(int billnumber)
+    public static SecurityBill getinstance(int billnumber)
     {
         if (instancecopy == null)
         {
-            instancecopy = new SecuritySingleton(billnumber);
+            instancecopy = new SecurityBill(billnumber);
         }
         return instancecopy;
     }
