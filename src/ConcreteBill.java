@@ -5,15 +5,15 @@ public class ConcreteBill {
 
     public int billnumber;
 
-    private FireSingleton fireinst;
-    private SecuritySingleton securityinst;
+    private FireBill fireinst;
+    private SecurityBill securityinst;
 
     public ConcreteBill(int billnumber)
     {
         this.billnumber = billnumber;
         //calling firesingleton and securitysingleton objects
-        this.fireinst = FireSingleton.getinstance(billnumber);
-        this.securityinst = SecuritySingleton.getinstance(billnumber);
+        this.fireinst = FireBill.getinstance(billnumber);
+        this.securityinst = SecurityBill.getinstance(billnumber);
     }
 
     public long get_fire_bill(List<Room> fireroom, List<HashMap<String, Integer>> perroomprice)
